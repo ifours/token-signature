@@ -1,4 +1,3 @@
-
 const crypto = require('crypto')
 
 const encode = value => Buffer.from(value).toString('base64')
@@ -20,7 +19,7 @@ exports.unsign = function unsign(secret, token) {
   const signature = decode(parts[0])
   const payload = decode(parts[1])
 
-  const expected = makeHash(secret, token)
+  const expected = makeHash(secret, payload)
 
   if (!crypto.timingSafeEqual(
       Buffer.from(signature),
